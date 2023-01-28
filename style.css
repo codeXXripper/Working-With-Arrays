@@ -1,5 +1,5 @@
 /*
- * Use this CSS to learn some intersting techniques,
+ * Use this CSS to learn some interesting techniques,
  * in case you're wondering how I built the UI.
  * Have fun! 😁
  */
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
@@ -24,6 +24,7 @@ body {
 }
 
 nav {
+  font-family: 'Bungee Inline', cursive;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,7 +95,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+  /* opacity: 0; */
   transition: all 1s;
 }
 
