@@ -251,7 +251,7 @@ const maximum = movements.reduce((acc, mov) => {
 // console.log(maximum);
 
 // Challenge number 1
-
+//mdn array.slice
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrected = dogsJulia.slice();
   dogsJuliaCorrected.splice(0, 1);
@@ -267,4 +267,23 @@ const checkDogs = function (dogsJulia, dogsKate) {
   });
 };
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+const calcAvgHumanAge = function (ages) {
+  const humanAge = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adultDogs = humanAge.filter(age => age >= 18);
+
+  // const avgAge =
+  //   adultDogs.reduce((sum, cur) => sum + cur, 0) / adultDogs.length;
+
+  const avgAge = adultDogs.reduce(
+    (sum, cur, i, arr) => sum + cur / arr.length,
+    0
+  );
+
+  return avgAge;
+};
+
+const avg1 = calcAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAvgHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg1, avg2);
