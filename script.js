@@ -79,7 +79,25 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-//mdn element.insertAdjacentHTML;
+const calcPrintBal = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcPrintBal(account1.movements);
+
+const createUN = function (acc) {
+  acc.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUN(accounts);
+
+//mdn element.insertAdjacentHTML
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -204,3 +222,49 @@ const newMov =movements.map((mov,i)=> `Mov ${i+1}: You ${mov >0 ? 'deposited' :'
 console.log(newMov);
  */
 //mdn array.map
+
+//FILTER METHOD
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const deposits = movements.filter(function(mov){
+//   return mov > 0
+// });
+// console.log(deposits);
+
+// const withdrawals = movements.filter(mov => mov <0);
+// console.log(withdrawals);
+
+//mdn array.filter
+
+//REDUCE METHOD
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
+
+//mdn array.reduce
+
+const maximum = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+
+// console.log(maximum);
+
+// Challenge number 1
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+  // console.log(dogsJuliaCorrected);
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+  console.log(dogs);
+  // const printAge =dogs.map((mov,i)=> `Dog number ${i+1} is ${mov >5 ? 'an adult, and is' :'still a puppy'`));
+  dogs.forEach(function (value, key) {
+    if (value >= 3)
+      console.log(`Dog number ${key + 1} is  and ${value} years old`);
+    else console.log(`Dog number ${key + 1}  'still a puppy 🐶'`);
+  });
+};
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
