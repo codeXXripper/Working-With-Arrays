@@ -633,55 +633,64 @@ const createUN = function (acc) {
 //Task number 1
 
 dogs.forEach(
-  el => (el.recommendedFood = (el.weight / 1000) ** 0.75 * 28 * 1000)
+  dog => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
 );
 
-console.log(dogs);
+// console.log(dogs);
 //mdn array.foreach
 
 //Task number 2
-const findSarah = dogs
-  .flatMap(dog =>
-    dog.owners.map(owners => ({
-      recommended: dog.recommendedFood,
-      current: dog.curFood,
-      owners,
-    }))
-  )
-  .filter(dogOwner => dogOwner.owners === 'Sarah')
-  .filter((el, cur) => {
-    if (el.recommended >= el.cur) {
-      // console.log('Eating too much');
-    } else {
-      // console.log('Eating too little');
-    }
-  });
+const findSarah = dogs.find(dog => dog.owners.includes('Sarah'));
 
-// console.log(findSarah);
+console.log(findSarah);
+console.log(
+  `Sarah's dog is eating too ${
+    findSarah.curFood > findSarah.recommendedFood ? 'much' : 'little'
+  }`
+);
 
 //Task number 3
-const ownersEatTooMuch = dogs.map(dog => ({
-  recommended: dog.recommendedFood,
-  current: dog.curFood,
-  owners: dog.owners.flat(1),
-}));
-
-// .filter((el, cur) => {
-//   el.cur >= el.recommended;
-// });
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood)
+  .flatMap(dog => dog.owners);
 
 console.log(ownersEatTooMuch);
 
 const ownersEatTooLittle = dogs
-  .flatMap(dog =>
-    dog.owners.map(owners => ({
-      recommended: dog.recommendedFood,
-      current: dog.curFood,
-      owners,
-    }))
-  )
-  .filter((el, cur) => {
-    el.cur < el.recommended;
-  });
+  .filter(dog => dog.curFood < dog.recommendedFood)
+  .flatMap(dog => dog.owners);
 
 console.log(ownersEatTooLittle);
+
+console.log(dogs);
+
+//Task number 4
+
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+// console.log(`${ownersEatTooMuch}  ${ownersEatTooLittle}`);
+
+//Task number 5
+
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
+
+//Task number 6
+
+const okayEatingDogs = dog =>
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1;
+
+console.log(dogs.some(okayEatingDogs));
+
+//Task number 7
+console.log(dogs.filter(okayEatingDogs));
+
+//Task number 8
+
+const shallowCopy = dogs
+  .map(dog => dog)
+  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+
+console.log(shallowCopy);
