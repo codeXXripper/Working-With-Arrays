@@ -627,7 +627,6 @@ const createUN = function (acc) {
 
 
 
- */
 // console.log(dogs);
 
 //Task number 1
@@ -694,3 +693,6 @@ const shallowCopy = dogs
   .sort((a, b) => a.recommendedFood - b.recommendedFood);
 
 console.log(shallowCopy);
+
+
+*/
